@@ -53,6 +53,7 @@ def initiate_model():
                  ref_bath.e_a1,
                  ref_bath.e_a2,
                  ref_bath.e_a3,
+                 ref_bath.e_dac,
                  )
 
     param_full = param_top + param_bot
@@ -116,8 +117,8 @@ if __name__ == "__main__":
     param_top, param_bot, sys_noise_fun = initiate_model()
     evad = get_eval_dict()
     p0 = [evad[p] for p in param_bot]
-    p0 = [ 5.61409929e-12,  1.32513485e-19,  3.25502917e-17,  9.12350002e-23,
-            6.10098069e-09, -3.24148795e-08,  1.12412524e-08]
+#    p0 = [ 5.61409929e-12,  1.32513485e-19,  3.25502917e-17,  9.12350002e-23,
+#            6.10098069e-09, -3.24148795e-08,  1.12412524e-08]
 
     model0 = make_model_data(p0)
     fake0 = make_fake_data(model0, sigma_coeff=120**-0.5)

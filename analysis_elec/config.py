@@ -26,6 +26,10 @@ ground.voltage = 0
 
 ### Wire capacitance
 capa = eth.Capacitor('f')
+
+#### Load capacitance
+#load = eth.Capacitor('f')
+
 ### NTD resistance
 elntd = eth.Resistor(capa, ground, 'ntd')
 
@@ -54,6 +58,12 @@ capa.i_a2 = i_a2
 capa.i_a3 = i_a3
 noise_current = (i_a1**2 + i_a2**2 *freq + i_a3**2 *freq**2)**0.5
 capa.noise_sys['Ampli. Current'] = noise_current
+
+# dac current noise (impact system and so observer)
+e_dac = sy.symbols('e_dac')
+capa.e_dac = e_dac
+dac_current = e_dac * sy.I * 2 * sy.pi * freq * 10e-12
+capa.noise_sys['DAC Current'] = dac_current
 
 # amplifier voltage noise (impact the observer only)
 e_a1, e_a2, e_a3 = sy.symbols('e_a1, e_a2, e_a3')
@@ -102,7 +112,8 @@ evad_noise = {e_a1: 5e-9,
               e_a3: 1e-8,
               i_a1: 1e-15,
               i_a2: 5e-16,
-              i_a3: 1e-17,}
+              i_a3: 1e-17,
+              e_dac: 2e-9}
 
 evad = dict()
 evad.update(evad_const)
