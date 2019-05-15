@@ -17,7 +17,7 @@ import scipy.optimize as op
 
 # importing ethem and mcmc-red package from custom paths
 from import_package import custom_import
-custom_import()
+data_dir, output_dir = custom_import()
 import mcmc_red as mcr
 
 from config import get_eval_dict
@@ -74,7 +74,7 @@ p0 = [evad[p] for p in param_bot]
 
 # XXX MCMC
 # save directory
-sampler_path = 'mcmc_sampler/autosave'
+sampler_path = output_dir + '/mcmc_sampler/autosave'
 
 # running the mcmc analysis
 bounds = [(p/100, p*100) for p in p0]
