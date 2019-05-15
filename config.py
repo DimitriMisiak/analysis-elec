@@ -10,7 +10,7 @@ Basically set up the simulation of the detector.
 import sympy as sy
 
 from import_package import custom_import
-custom_import()
+data_dir, output_dir = custom_import()
 
 import ethem as eth
 
@@ -76,7 +76,7 @@ capa.noise_obs['Ampli. voltage'] = noise_voltage
 #==============================================================================
 # UPDATING THE SYSTEM
 #==============================================================================
-eth.System.build_sym(savepath='output/build_sym')
+eth.System.build_sym(savepath=output_dir+'/build_sym')
 
 #==============================================================================
 # EVENT PERTURBATION
