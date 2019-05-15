@@ -54,7 +54,7 @@ def crop_parasite_signal(x_data, y_data, window_length):
                 y += 1
             else:
                 n += 1
-    print 'Number of Rejected Frequencies =', n
+    print('Number of Rejected Frequencies =', n)
     return np.array(x_data_pure), np.array(y_data_pure), mean_pure, ratio_list
 
 def process_data():
@@ -122,7 +122,6 @@ def get_processed_data():
         xy_data = np.vstack((freq_array, lpsd_array))
         xy_data_list.append(xy_data)
 
-    print valid_ind
     return (name_array[valid_ind], temp_array[valid_ind],
          res_array[valid_ind], xy_data_list)
 

@@ -11,14 +11,7 @@ Also extract the output directory path in the variable 'output_dir'.
 
 import os
 import sys
-import ConfigParser
-
-
-#print __file__
-#print os.path.join(os.path.dirname(__file__), '..')
-#print os.path.dirname(os.path.realpath(__file__))
-#print os.path.abspath(os.path.dirname(__file__))
-
+import configparser
 
 def custom_import():
     """ Custom import function.
@@ -28,17 +21,24 @@ def custom_import():
     cfd = os.path.dirname(os.path.realpath(__file__))
     config_path = cfd + '/config.ini'
 
-    Config = ConfigParser.ConfigParser()
+    Config = configparser.ConfigParser()
     Config.read(config_path)
 
     ethem_path = Config.get('ethem', 'path')
-    sys.path.append(ethem_path)
-
     mcmc_path = Config.get('mcmc-red', 'path')
-    sys.path.append(mcmc_path)
+    
+#    sys.path.append(ethem_path)    
+    for dirp in (ethem_path, mcmc_path):
+        if dirp not in sys.path:
+            sys.path.append(dirp)
 
     data_dir = Config.get('Data', 'path')
 
     output_dir = Config.get('Output', 'path')
 
     return data_dir, output_dir
+
+
+if __name__ == '__main__':
+    
+    print(custom_import())

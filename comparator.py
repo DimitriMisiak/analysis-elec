@@ -50,7 +50,7 @@ def chi2_model(param, check_print=False):
     x2 = chi2_list(model_data, exp_data)
 
     if check_print is True:
-        print x2
+        print(x2)
 
     return x2
 
@@ -82,13 +82,13 @@ if __name__ == "__main__":
     chi2_check_0exp = chi2_list(model0, exp_data, sigma_coeff=120**-0.5)
     chi2_real = chi2_model(p0, check_print=True)
 
-    print "Self Chi2 Model = ", self_chi2_model
-    print "Self Chi2 Fake = ", self_chi2_fake
-    print "Chi2 Check Model vs Fake = ", chi2_check_00
-    print "Chi2 Check Model0 vs Model1 = ", chi2_check_01
-    print "Chi2 Check Model0 vs Exp = ", chi2_check_0exp
-    print "Chi2 Model vs Exp = ", chi2_real
-    print "Total number of degrees of freedom = ", ddf
+    print("Self Chi2 Model = ", self_chi2_model)
+    print("Self Chi2 Fake = ", self_chi2_fake)
+    print("Chi2 Check Model vs Fake = ", chi2_check_00)
+    print("Chi2 Check Model0 vs Model1 = ", chi2_check_01)
+    print("Chi2 Check Model0 vs Exp = ", chi2_check_0exp)
+    print("Chi2 Model vs Exp = ", chi2_real)
+    print("Total number of degrees of freedom = ", ddf)
 
     plt.figure('chi2_list check plot')
     for md, fd, md1 in zip(model0, fake0, model1):

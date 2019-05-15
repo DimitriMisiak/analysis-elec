@@ -87,7 +87,7 @@ lab = tuple(['$p${}'.format(i) for i in range(ndim)])
 dim = int(logd['dim'])
 xopt, inf, sup = mcr.mcmc_results(dim, chain, lnprob, acc, lab)
 
-print xopt, inf, sup
+print(xopt, inf, sup)
 
 ### PLOT FIT
 plt.figure('PLOT FIT')

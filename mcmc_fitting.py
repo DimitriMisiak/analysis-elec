@@ -89,7 +89,7 @@ lab = [p.name for p in param_bot]
 dim = int(logd['dim'])
 xopt, inf, sup = mcr.mcmc_results(dim, chain, lnprob, acc, tuple(lab))
 
-print xopt, inf, sup
+print(xopt, inf, sup)
 
 #### PLOT FIT
 #
