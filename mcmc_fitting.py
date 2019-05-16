@@ -80,7 +80,13 @@ sampler_path = output_dir + '/mcmc_sampler/autosave'
 
 # running the mcmc analysis
 bounds = [(p/10, p*10) for p in p0]
-sampler = mcr.mcmc_sampler(chi2_model, bounds, nsteps=1000, path=sampler_path)
+
+# initial position set to the stase mcmc exploration
+logd, chain, lnprob, acc = mcr.get_mcmc_sampler('/pbs/home/d/dmisiak/scripts/analysis-elec/stase/qsub1')
+
+pos0 = chain[:,-1,:]
+
+sampler = mcr.mcmc_sampler(chi2_model, bounds, nsteps=1000, path=sampler_path, pos=pos0)
 
 
 # loading the mcmc results
