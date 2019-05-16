@@ -1,0 +1,35 @@
+***************************************************************
+*                  Grid Engine Batch System                   *
+*           IN2P3 Computing Centre, Villeurbanne FR           *
+***************************************************************
+* User:                    dmisiak                            *
+* Group:                   edelweis                           *
+* Jobname:                 bootstrap.sh                       *
+* JobID:                   6289970                            *
+* Queue:                   long                               *
+* Worker:                  ccwsge0492.in2p3.fr                *
+* Operating system:        Linux 3.10.0-957.12.1.el7.x86_64   *
+* Project:                 P_edelweis                         *
+***************************************************************
+* Submitted on:            Wed May 15 15:22:54 2019           *
+* Started on:              Wed May 15 15:23:33 2019           *
+***************************************************************
+
+Launching mcmc_fitting !
+Building System Done (written in /pbs/home/d/dmisiak/scripts/analysis-elec/output/build_sym)
+Done.
+
+
+***************************************************************
+* Ended on:                Wed May 15 18:54:47 2019           *
+* Exit status:             0                                  *
+* Consumed                                                    *
+*   cpu (HS06):            1:15:18:39                         *
+*   cpu scaling factor:    11.330000                          *
+*   cpu time:              12490 / 172800                     *
+*   efficiency:            98 %                               *
+*   io:                    0.03501GB                          *
+*   vmem:                  2.389G                             *
+*   maxvmem:               2.389G                             *
+*   maxrss:                435.113M                           *
+***************************************************************
