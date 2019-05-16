@@ -35,6 +35,8 @@ param_top, param_bot, model_fun = initiate_model()
 #
 p0 = [evad[p] for p in param_bot]
 
+p0 = [7e-11, 7e-17, 4e-17, 3.1e-19, 1.6e-9, 9.6e-9, 3.08e-8, 2.32e-8]
+
 #from tqdm import trange
 #for i in trange(10):
 #    A = chi2_model(p0)
@@ -77,19 +79,19 @@ p0 = [evad[p] for p in param_bot]
 sampler_path = output_dir + '/mcmc_sampler/autosave'
 
 # running the mcmc analysis
-bounds = [(p/100, p*100) for p in p0]
+bounds = [(p/10, p*10) for p in p0]
 sampler = mcr.mcmc_sampler(chi2_model, bounds, nsteps=1000, path=sampler_path)
 
 
 # loading the mcmc results
-logd, chain, lnprob, acc = mcr.get_mcmc_sampler(sampler_path)
-
-lab = [p.name for p in param_bot]
-
-dim = int(logd['dim'])
-xopt, inf, sup = mcr.mcmc_results(dim, chain, lnprob, acc, tuple(lab))
-
-print(xopt, inf, sup)
+#logd, chain, lnprob, acc = mcr.get_mcmc_sampler(sampler_path)
+#
+#lab = [p.name for p in param_bot]
+#
+#dim = int(logd['dim'])
+#xopt, inf, sup = mcr.mcmc_results(dim, chain, lnprob, acc, tuple(lab))
+#
+#print(xopt, inf, sup)
 
 #### PLOT FIT
 #

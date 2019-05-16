@@ -17,7 +17,7 @@ import numpy as np
 
 # importing ethem and mcmc-red package from custom paths
 from import_package import custom_import
-custom_import()
+data_dir, output_dir = custom_import()
 import mcmc_red as mcr
 
 from config import get_eval_dict
@@ -85,8 +85,8 @@ for md, ed in zip(model0, exp_data):
 
 
 ### XXX MINIMIZER
-
-chi2_aux = lambda x: chi2_model(x, check_print=True)
+chi2_aux = lambda x: chi2_model(x, check_print=False)
+#chi2_aux = lambda x: chi2_model(x, check_print=True)
 result = op.minimize(chi2_aux, p1, method='nelder-mead')
 
 plt.figure()
@@ -98,4 +98,6 @@ for md in exp_data:
 for md in model_opt:
     plt.loglog(md[0], md[1])
 
+plt.savefig(output_dir+'/minimizer_fitting.png')
+print(result)
 
