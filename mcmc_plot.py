@@ -115,7 +115,7 @@ def mcmc_plot(ndim, chain, lnprob, acc, labels, scale='linear', savedir=None):
     # plotting the log10(-lnprob) array and the cut threshold
     ax[-1].plot(-lnprob.T, color='k')
 
-    plt.figure('log')
+    plt.figure('lnprob')
     plt.axhline(-lncut, color='r')
     plt.plot(-lnprob.T, color='k')
 
@@ -233,7 +233,7 @@ if __name__ == "__main__":
     
     # XXX MCMC
     # save directory
-    sampler_path = '/home/misiak/Scripts/analysis-elec/mcmc_sampler/output_cc'
+    sampler_path = '/home/misiak/projects/analysis-elec/mcmc_sampler/output_cc'
     
     # loading the mcmc results
     logd, chain, lnprob, acc = mcr.get_mcmc_sampler(sampler_path)
