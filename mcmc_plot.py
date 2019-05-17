@@ -233,7 +233,7 @@ if __name__ == "__main__":
     
     # XXX MCMC
     # save directory
-    sampler_path = '/home/misiak/projects/analysis-elec/mcmc_sampler/output_cc'
+    sampler_path = '/home/misiak/projects/analysis-elec/mcmc_sampler/output_cc_2'
     
     # loading the mcmc results
     logd, chain, lnprob, acc = mcr.get_mcmc_sampler(sampler_path)
