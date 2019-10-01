@@ -19,7 +19,7 @@ from import_package import custom_import
 custom_import()
 import ethem as eth
 
-from config import get_eval_dict
+from config import syst, get_eval_dict
 from process_data import get_processed_data
 
 def initiate_model():
@@ -38,11 +38,11 @@ def initiate_model():
     """
 
     # referance bath
-    ref_bath = eth.System.Capacitor_f
+    ref_bath = syst.Capacitor_f
 
     # "primary" parameters
-    param_top = (eth.System.Resistor_ntd.temperature,
-                 eth.System.Resistor_ntd.resistivity
+    param_top = (syst.Resistor_ntd.temperature,
+                 syst.Resistor_ntd.resistivity
                  )
 
     # "secondary" parameters
@@ -61,7 +61,7 @@ def initiate_model():
     # evaluation dictionnary
     evad = get_eval_dict()
 
-    sys_noise_fun = eth.noise_tot_param(param_full, evad, ref_bath)
+    sys_noise_fun = eth.noise_tot_param(syst, param_full, evad, ref_bath)
 
     return param_top, param_bot, sys_noise_fun
 
@@ -120,6 +120,9 @@ if __name__ == "__main__":
 #    p0 = [ 5.61409929e-12,  1.32513485e-19,  3.25502917e-17,  9.12350002e-23,
 #            6.10098069e-09, -3.24148795e-08,  1.12412524e-08]
 
+    p0 = np.array([7.04564945e-11, 7.73917292e-17, 4.87160682e-17, 8.48118640e-19,
+       1.61689602e-09, 9.60786351e-09, 3.09080423e-08, 1.94911972e-08])
+
     model0 = make_model_data(p0)
     fake0 = make_fake_data(model0, sigma_coeff=120**-0.5)
 
@@ -128,8 +131,8 @@ if __name__ == "__main__":
 
     cmap = plt.get_cmap('magma')
 
-    plt.close('all')
-    plt.figure('noise dict plot', figsize=(10,7))
+#    plt.close('all')
+#    plt.figure('noise dict plot', figsize=(10,7))
 
     for i in ind_sort:
         name = name_array[i]

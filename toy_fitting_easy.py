@@ -12,10 +12,6 @@ Author:
 
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
-import scipy.signal as sgl
-from os import path
-import scipy.optimize as op
 
 from import_package import custom_import
 
@@ -23,7 +19,7 @@ custom_import()
 
 import mcmc_red as mcr
 import ethem as eth
-from config import evad
+from config import syst, evad
 
 # close all plots
 plt.close('all')
@@ -36,7 +32,7 @@ freq_array = np.flip(np.arange(fs/2., 0., -L**-1), axis=0)
 
 
 # System Simulation
-ref_bath = eth.System.Capacitor_f
+ref_bath = syst.Capacitor_f
 
 param_sym = (ref_bath.capacity,
              ref_bath.i_a1,
@@ -47,7 +43,7 @@ param_sym = (ref_bath.capacity,
              ref_bath.e_a3,
              )
 
-sys_noise_fun = eth.noise_tot_param(param_sym, evad, ref_bath)
+sys_noise_fun = eth.noise_tot_param(syst, param_sym, evad, ref_bath)
 
 def sys_noise(param):
     return sys_noise_fun(param)(freq_array)
@@ -77,7 +73,8 @@ sampler_path = 'mcmc_sampler/autosave'
 # running the mcmc analysis
 #bounds = ((1e5, 1e7),(1e-12, 1e-10),)
 bounds = [(p/10, p*10) for p in p0]
-sampler = mcr.mcmc_sampler(chi2, bounds, nsteps=1000, path=sampler_path)
+sampler = mcr.mcmc_sampler(chi2, bounds, nsteps=1000, path=sampler_path, 
+                           progress=True)
 
 # loading the mcmc results
 logd, chain, lnprob, acc = mcr.get_mcmc_sampler(sampler_path)

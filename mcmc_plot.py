@@ -168,7 +168,8 @@ def mcmc_plot(ndim, chain, lnprob, acc, labels, scale='linear', savedir=None):
     ax[0].set_ylabel('p0')
 
     for c in chain[:,:,0]:
-        funk = emcee.autocorr.function(c)
+#        funk = emcee.autocorr.function(c)
+        funk = emcee.autocorr.function_1d(c)
         ax[0].plot(c)
         ax[1].plot(funk)
 
